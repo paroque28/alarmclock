@@ -1,9 +1,0 @@
-11:48:19 **** Incremental Build of configuration Nios II for project alarma_c ****
-make all 
-Info: Building ../alarma_c_bsp/
-make --no-print-directory -C ../alarma_c_bsp/
-[BSP build complete]
-[alarma_c build complete]
-
-11:48:19 Build Finished (took 485ms)
-

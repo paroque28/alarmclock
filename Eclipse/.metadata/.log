@@ -1,4 +1,4 @@
-!SESSION 2018-10-17 11:00:42.221 -----------------------------------------------
+!SESSION 2018-10-17 17:46:49.214 -----------------------------------------------
 eclipse.buildId=4.5.2.M20160212-1500
 java.version=1.8.0_05
 java.vendor=Oracle Corporation
@@ -6,84 +6,8 @@ BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
 Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization /home/oscarjosueulatealpizar/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
 Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization /home/oscarjosueulatealpizar/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
 
-!ENTRY org.eclipse.cdt.core 1 0 2018-10-17 11:06:37.366
-!MESSAGE Indexed 'alarma_c_bsp' (79 sources, 154 headers) in 7.65 sec: 5,284 declarations; 8,440 references; 22 unresolved inclusions; 3 syntax errors; 60 unresolved names (0.44%)
+!ENTRY org.eclipse.cdt.core 1 0 2018-10-17 17:49:15.150
+!MESSAGE Indexed 'alarm_code_bsp' (82 sources, 152 headers) in 5.14 sec: 5,417 declarations; 8,464 references; 52 unresolved inclusions; 3 syntax errors; 96 unresolved names (0.69%)
 
-!ENTRY org.eclipse.cdt.core 1 0 2018-10-17 11:06:39.465
-!MESSAGE Indexed 'alarma_c' (1 sources, 0 headers) in 0.005 sec: 1 declarations; 1 references; 1 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
-!SESSION 2018-10-17 11:41:14.548 -----------------------------------------------
-eclipse.buildId=4.5.2.M20160212-1500
-java.version=1.8.0_05
-java.vendor=Oracle Corporation
-BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
-Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization /home/oscarjosueulatealpizar/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
-Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization /home/oscarjosueulatealpizar/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:42:50.212
-!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --stop]
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:42:51.946
-!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --go /home/oscarjosueulatealpizar/Proyect-2/software/alarma_c/alarma_c.elf]
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:44:53.352
-!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [1-2]
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:44:53.545
-!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --stop]
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:44:55.193
-!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --go /home/oscarjosueulatealpizar/Proyect-2/software/alarma_c/alarma_c.elf]
-
-!ENTRY org.eclipse.cdt.ui 4 0 2018-10-17 11:45:08.831
-!MESSAGE Error in CDT UI during reconcile
-!STACK 1
-C Model Exception: C Model Status [Element hello_world_small.c does not exist.]
-	at org.eclipse.cdt.internal.core.model.CElement.newNotPresentException(CElement.java:484)
-	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:573)
-	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:62)
-	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
-	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
-	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
-	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:362)
-	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:78)
-	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:63)
-	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:87)
-	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
-	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:77)
-	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:349)
-	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:206)
-!SUBENTRY 1 org.eclipse.cdt.core 4 969 2018-10-17 11:45:08.836
-!MESSAGE Element hello_world_small.c does not exist.
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:45:09.595
-!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [1-2]
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:45:09.720
-!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --stop]
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:45:11.322
-!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --go /home/oscarjosueulatealpizar/Proyect-2/software/alarma_c/alarma_c.elf]
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:47:56.232
-!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [1-2]
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:47:56.286
-!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --stop]
-
-!ENTRY com.altera.sbtgui.launch 4 0 2018-10-17 11:47:57.781
-!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [1-2]', --device=2, --instance=0, --stop] return code: 8
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:47:57.798
-!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --go /home/oscarjosueulatealpizar/Proyect-2/software/alarma_c/alarma_c.elf]
-
-!ENTRY com.altera.sbtgui.launch 4 0 2018-10-17 11:47:59.306
-!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [1-2]', --device=2, --instance=0, --go, /home/oscarjosueulatealpizar/Proyect-2/software/alarma_c/alarma_c.elf] return code: 8
-
-!ENTRY com.altera.sbtgui.launch 4 0 2018-10-17 11:47:59.311
-!MESSAGE Downloading ELF Process failed
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:48:20.817
-!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --stop]
-
-!ENTRY com.altera.sbtgui.launch 1 0 2018-10-17 11:48:22.410
-!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --go /home/oscarjosueulatealpizar/Proyect-2/software/alarma_c/alarma_c.elf]
+!ENTRY org.eclipse.cdt.core 1 0 2018-10-17 17:49:16.811
+!MESSAGE Indexed 'alarm_code' (1 sources, 0 headers) in 0.004 sec: 1 declarations; 1 references; 1 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)

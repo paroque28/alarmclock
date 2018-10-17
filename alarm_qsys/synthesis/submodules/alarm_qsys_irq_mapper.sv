@@ -11,18 +11,18 @@
 // agreement for further details.
 
 
-// $Id: //acds/rel/18.0std/ip/merlin/altera_irq_mapper/altera_irq_mapper.sv.terp#1 $
+// $Id: //acds/rel/18.1std/ip/merlin/altera_irq_mapper/altera_irq_mapper.sv.terp#1 $
 // $Revision: #1 $
-// $Date: 2018/01/31 $
+// $Date: 2018/07/18 $
 // $Author: psgswbuild $
 
 // -------------------------------------------------------
 // Altera IRQ Mapper
 //
 // Parameters
-//   NUM_RCVRS        : 2
+//   NUM_RCVRS        : 3
 //   SENDER_IRW_WIDTH : 32
-//   IRQ_MAP          : 0:0,1:1
+//   IRQ_MAP          : 0:1,1:2,2:0
 //
 // -------------------------------------------------------
 
@@ -41,6 +41,7 @@ module alarm_qsys_irq_mapper
     // -------------------
     input                receiver0_irq,
     input                receiver1_irq,
+    input                receiver2_irq,
 
     // -------------------
     // Command Source (Output)
@@ -52,8 +53,9 @@ module alarm_qsys_irq_mapper
     always @* begin
 	sender_irq = 0;
 
-        sender_irq[0] = receiver0_irq;
-        sender_irq[1] = receiver1_irq;
+        sender_irq[1] = receiver0_irq;
+        sender_irq[2] = receiver1_irq;
+        sender_irq[0] = receiver2_irq;
     end
 
 endmodule
