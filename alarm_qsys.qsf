@@ -41,7 +41,7 @@ set_global_assignment -name DEVICE 5CSEMA5F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY alarm_qsys
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:59:12  OCTOBER 17, 2018"
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.0.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
@@ -55,46 +55,84 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name QIP_FILE alarm_qsys/synthesis/alarm_qsys.qip
 set_location_assignment PIN_AF14 -to clk_clk
-
 #============================================================
 # SEG7
 #============================================================
-#============================================================
-# SEG7
-#============================================================
-set_location_assignment PIN_AE26 -to HEX0[0]
-set_location_assignment PIN_AE27 -to HEX0[1]
-set_location_assignment PIN_AE28 -to HEX0[2]
-set_location_assignment PIN_AG27 -to HEX0[3]
-set_location_assignment PIN_AF28 -to HEX0[4]
-set_location_assignment PIN_AG28 -to HEX0[5]
-set_location_assignment PIN_AH28 -to HEX0[6]
-set_location_assignment PIN_AJ29 -to HEX1[0]
-set_location_assignment PIN_AH29 -to HEX1[1]
-set_location_assignment PIN_AH30 -to HEX1[2]
-set_location_assignment PIN_AG30 -to HEX1[3]
-set_location_assignment PIN_AF29 -to HEX1[4]
-set_location_assignment PIN_AF30 -to HEX1[5]
-set_location_assignment PIN_AD27 -to HEX1[6]
-set_location_assignment PIN_AB23 -to HEX2[0]
-set_location_assignment PIN_AE29 -to HEX2[1]
-set_location_assignment PIN_AD29 -to HEX2[2]
-set_location_assignment PIN_AC28 -to HEX2[3]
-set_location_assignment PIN_AD30 -to HEX2[4]
-set_location_assignment PIN_AC29 -to HEX2[5]
-set_location_assignment PIN_AC30 -to HEX2[6]
-set_location_assignment PIN_AD26 -to HEX3[0]
-set_location_assignment PIN_AC27 -to HEX3[1]
-set_location_assignment PIN_AD25 -to HEX3[2]
-set_location_assignment PIN_AC25 -to HEX3[3]
-set_location_assignment PIN_AB28 -to HEX3[4]
-set_location_assignment PIN_AB25 -to HEX3[5]
-set_location_assignment PIN_AB22 -to HEX3[6]
-set_location_assignment PIN_AA24 -to HEX4[0]
-set_location_assignment PIN_Y23 -to HEX4[1]
-set_location_assignment PIN_Y24 -to HEX4[2]
-set_location_assignment PIN_W22 -to HEX4[3]
-set_location_assignment PIN_W24 -to HEX4[4]
-set_location_assignment PIN_V23 -to HEX4[5]
+set_location_assignment PIN_AE26 -to hex0_export[0]
+set_location_assignment PIN_AE27 -to hex0_export[1]
+set_location_assignment PIN_AE28 -to hex0_export[2]
+set_location_assignment PIN_AG27 -to hex0_export[3]
+set_location_assignment PIN_AF28 -to hex0_export[4]
+set_location_assignment PIN_AG28 -to hex0_export[5]
+set_location_assignment PIN_AH28 -to hex0_export[6]
+set_location_assignment PIN_AJ29 -to hex1_export[0]
+set_location_assignment PIN_AH29 -to hex1_export[1]
+set_location_assignment PIN_AH30 -to hex1_export[2]
+set_location_assignment PIN_AG30 -to hex1_export[3]
+set_location_assignment PIN_AF29 -to hex1_export[4]
+set_location_assignment PIN_AF30 -to hex1_export[5]
+set_location_assignment PIN_AD27 -to hex1_export[6]
+set_location_assignment PIN_AB23 -to hex2_export[0]
+set_location_assignment PIN_AE29 -to hex2_export[1]
+set_location_assignment PIN_AD29 -to hex2_export[2]
+set_location_assignment PIN_AC28 -to hex2_export[3]
+set_location_assignment PIN_AD30 -to hex2_export[4]
+set_location_assignment PIN_AC29 -to hex2_export[5]
+set_location_assignment PIN_AC30 -to hex2_export[6]
+set_location_assignment PIN_AD26 -to hex3_export[0]
+set_location_assignment PIN_AC27 -to hex3_export[1]
+set_location_assignment PIN_AD25 -to hex3_export[2]
+set_location_assignment PIN_AC25 -to hex3_export[3]
+set_location_assignment PIN_AB28 -to hex3_export[4]
+set_location_assignment PIN_AB25 -to hex3_export[5]
+set_location_assignment PIN_AB22 -to hex3_export[6]
+set_location_assignment PIN_AA24 -to hex4_export[0]
+set_location_assignment PIN_Y23 -to hex4_export[1]
+set_location_assignment PIN_Y24 -to hex4_export[2]
+set_location_assignment PIN_W22 -to hex4_export[3]
+set_location_assignment PIN_W24 -to hex4_export[4]
+set_location_assignment PIN_V23 -to hex4_export[5]
 
+
+
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex0_export[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex0_export[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex0_export[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex0_export[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex0_export[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex0_export[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex0_export[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex1_export[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex1_export[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex1_export[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex1_export[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex1_export[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex1_export[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex1_export[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex2_export[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex2_export[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex2_export[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex2_export[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex2_export[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex2_export[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex2_export[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex3_export[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex3_export[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex3_export[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex3_export[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex3_export[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex3_export[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex3_export[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex4_export[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex4_export[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex4_export[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex4_export[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex4_export[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex4_export[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hex4_export[6]
+
+
+
+
+set_global_assignment -name VERILOG_FILE alarm_qsys/synthesis/alarm_qsys.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
