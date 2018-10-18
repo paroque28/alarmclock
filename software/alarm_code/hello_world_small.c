@@ -80,6 +80,7 @@
 
 #include "sys/alt_stdio.h"
 #include "system.h"
+#include "altera_avalon_timer_regs.h"
 
 /*
 #define BTNS_BASE 0x870
@@ -94,12 +95,67 @@
 #define TIMER_0_BASE 0x8a0
 */
 
+char *timer_status = (char *) TIMER_0_BASE;
+char *timer_control = (char *) TIMER_0_BASE + 1;
+
+volatile char *hex0 = (char *)SEVEN_SEG_0_BASE;
+volatile char *hex1 = (char *)SEVEN_SEG_1_BASE;
+
+int num0 = 0;
+
+char num_to_seven_seg(int num) {
+	unsigned int result = 0;
+
+	if (num == 0) { result = 0x7F - 0x40; }
+	else if (num == 1) { result = 0x7F - 0x79; }
+	else if (num == 2) { result = 0x7F - 0x24; }
+	else if (num == 3) { result = 0x7F - 0x30; }
+	else if (num == 4) { result = 0x7F - 0x19; }
+	else if (num == 5) { result = 0x7F - 0x12; }
+	else if (num == 6) { result = 0x7F - 0x02; }
+	else if (num == 7) { result = 0x7F - 0x78; }
+	else if (num == 8) { result = 0x7F - 0x00; }
+	else if (num == 9) { result = 0x7F - 0x10; }
+
+	return ~result;
+}
+
+void timer_isr(void * context){
+	*timer_status = 0x0;
+	if (num0 == 9){
+		num0 = -1;
+	}
+	*hex0 = num_to_seven_seg(++num0);
+}
+
 int main()
 { 
   alt_putstr("Hello from Nios II!\n");
+
+  *timer_control = 0x07;
+  *timer_status = 0x0;
+  alt_ic_isr_register (TIMER_0_IRQ_INTERRUPT_CONTROLLER_ID, TIMER_0_IRQ, timer_isr, 0,0);
 
   /* Event loop never exits. */
   while (1);
 
   return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
