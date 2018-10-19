@@ -1,4 +1,4 @@
-00:49:37 **** Incremental Build of configuration Nios II for project alarm_code ****
+01:31:09 **** Incremental Build of configuration Nios II for project alarm_code ****
 make all 
 Info: Building ../alarm_code_bsp/
 make --no-print-directory -C ../alarm_code_bsp/
@@ -6,23 +6,23 @@ make --no-print-directory -C ../alarm_code_bsp/
 Info: Compiling hello_world_small.c to obj/default/hello_world_small.o
 nios2-elf-gcc -xc -MP -MMD -c -I../alarm_code_bsp//HAL/inc -I../alarm_code_bsp/ -I../alarm_code_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_C_PLUS_PLUS -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)' -DALT_NO_EXIT -DALT_USE_DIRECT_DRIVERS -DALT_NO_INSTRUCTION_EMULATION -DALT_USE_SMALL_DRIVERS -DSMALL_C_LIB -DALT_SINGLE_THREADED    -Os -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/hello_world_small.o hello_world_small.c
 hello_world_small.c: In function 'btns_handler':
-hello_world_small.c:185:5: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
+hello_world_small.c:107:5: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
    if(btns_prev != *btns)
      ^
-hello_world_small.c:200:5: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
+hello_world_small.c:122:5: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
    if(btns_prev != *btns)
      ^
-hello_world_small.c:206:6: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
+hello_world_small.c:128:6: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
    if (state == 1) if(new_time != 0) new_time -= 300;
       ^
 Info: Linking alarm_code.elf
 nios2-elf-g++  -T'../alarm_code_bsp//linker.x' -msys-crt0='../alarm_code_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../alarm_code_bsp/  -msmallc  -Wl,-Map=alarm_code.map   -Os -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx -mgpopt=global  -o alarm_code.elf obj/default/hello_world_small.o -lm -msys-lib=m
 nios2-elf-insert alarm_code.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name alarm_qsys --quartus_project_dir "/home/oscarjosueulatealpizar/Proyect-2" --jdi ../..//output_files/alarm_qsys.jdi --sopcinfo /home/oscarjosueulatealpizar/Proyect-2/software/alarm_code_bsp/../../alarm_qsys.sopcinfo
-Info: (alarm_code.elf) 6568 Bytes program size (code + initialized data).
-Info:                  5348 Bytes free for stack + heap.
+Info: (alarm_code.elf) 6552 Bytes program size (code + initialized data).
+Info:                  5360 Bytes free for stack + heap.
 Info: Creating alarm_code.objdump
 nios2-elf-objdump --disassemble --syms --all-header --source alarm_code.elf >alarm_code.objdump
 [alarm_code build complete]
 
-00:49:38 Build Finished (took 790ms)
+01:31:10 Build Finished (took 737ms)
 

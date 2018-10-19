@@ -5017,3 +5017,73 @@ org.eclipse.core.internal.resources.ResourceException: The project description f
 
 !ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 00:49:40.996
 !MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --go --accept-bad-sysid /home/oscarjosueulatealpizar/Proyect-2/software/alarm_code/alarm_code.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:04:04.208
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [1-2]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:04:04.641
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=Not Found]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2018-10-19 01:04:06.149
+!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [1-2]', --device=2, --instance=0, --stop, --accept-bad-sysid, --sidp=Not Found] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:04:06.230
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --go --accept-bad-sysid /home/oscarjosueulatealpizar/Proyect-2/software/alarm_code/alarm_code.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:11:03.377
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [1-2]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:11:24.164
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=Not Found]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2018-10-19 01:11:25.702
+!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [1-2]', --device=2, --instance=0, --stop, --accept-bad-sysid, --sidp=Not Found] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:11:25.844
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --go --accept-bad-sysid /home/oscarjosueulatealpizar/Proyect-2/software/alarm_code/alarm_code.elf]
+!SESSION 2018-10-19 01:28:20.884 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization /home/oscarjosueulatealpizar/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization /home/oscarjosueulatealpizar/intelFPGA_lite/18.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY org.eclipse.core.resources 2 10035 2018-10-19 01:28:40.956
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:29:48.312
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=Not Found]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2018-10-19 01:29:50.132
+!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [1-2]', --device=2, --instance=0, --stop, --accept-bad-sysid, --sidp=Not Found] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:29:50.275
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-2]' --device=2 --instance=0 --go --accept-bad-sysid /home/oscarjosueulatealpizar/Proyect-2/software/alarm_code/alarm_code.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2018-10-19 01:29:51.739
+!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [1-2]', --device=2, --instance=0, --go, --accept-bad-sysid, /home/oscarjosueulatealpizar/Proyect-2/software/alarm_code/alarm_code.elf] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 4 0 2018-10-19 01:29:51.741
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:30:21.669
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-3]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=Not Found]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2018-10-19 01:30:23.080
+!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [1-3]', --device=2, --instance=0, --stop, --accept-bad-sysid, --sidp=Not Found] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:30:23.150
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-3]' --device=2 --instance=0 --go --accept-bad-sysid /home/oscarjosueulatealpizar/Proyect-2/software/alarm_code/alarm_code.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:31:11.279
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [1-3]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:31:11.931
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-3]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=Not Found]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2018-10-19 01:31:13.374
+!MESSAGE Failed Executing: [nios2-download, '--cable=DE-SoC on localhost [1-3]', --device=2, --instance=0, --stop, --accept-bad-sysid, --sidp=Not Found] return code: 8
+
+!ENTRY com.altera.sbtgui.launch 1 0 2018-10-19 01:31:13.451
+!MESSAGE Executing: [/bin/bash, -c, nios2-download '--cable=DE-SoC on localhost [1-3]' --device=2 --instance=0 --go --accept-bad-sysid /home/oscarjosueulatealpizar/Proyect-2/software/alarm_code/alarm_code.elf]

@@ -102,8 +102,11 @@ static void btns_handler(void * context){
 	*edge_capture_ptr = *(volatile int *)(BTNS_BASE + 12);
 	*btn_mask_ptr = 0xf;
 	*btn_edge_ptr = *edge_capture_ptr;
+	if (*btns == 15){
+		return;
+	}
 	switch(*btns){
-	case 8:       // set time
+	case 7:       // set time
 		if(btns_prev != *btns)
 			if (state != 1){
 				state = 1;
@@ -114,21 +117,21 @@ static void btns_handler(void * context){
 				now = new_time;
 			}
 		break;
-	case 4:      // set alarm
+	case 11:      // set alarm
 		if(btns_prev != *btns)
 		state = (state != 2) ? 2 : 0;
 		break;
-	case 2:      // up
+	case 13:      // up
 		if(btns_prev != *btns)
 		if (state == 1) new_time += 300;
 		else if (state == 2) alarm += 300;
 		break;
-	case 1:     // down
+	case 14:     // down
 		if(btns_prev != *btns)
 		if (state == 1) if(new_time != 0) new_time -= 300;
 		else if (state == 2) if(alarm != 0) alarm -= 300;
 		break;
-	case 0: break;
+	case 15: break;
 	default:
 		state = 0;
 		break;

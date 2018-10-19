@@ -69,18 +69,6 @@ static void timer_handler(void * context){
 
 	if (state == 0){
 		ts = *localtime(&now);
-		alarm_ts = *localtime(&alarm);
-		if (ts.tm_sec % 2 == 0 ){
-			if (ts.tm_min == alarm_ts.tm_min && ts.tm_hour == alarm_ts.tm_hour){
-				*leds = 0xFF;
-			}
-			else{
-				*leds = 0;
-			}
-		}
-		else {
-			*leds = 0;
-		}
 	}
 	else if (state == 1){
 		ts = *localtime(&new_time);
@@ -97,13 +85,26 @@ static void timer_handler(void * context){
 
 }
 
+static void init_timer (){
+	void * edge_capture_ptr = (void*) &edge_capture_time;
+	*timer_mask_ptr = 1;
+	*timer_edge_cap_ptr = 0xF;
+	alt_ic_isr_register (TIMER_0_IRQ_INTERRUPT_CONTROLLER_ID,
+			TIMER_0_IRQ,
+			timer_handler,
+			edge_capture_ptr,
+			0);
+	*timer_control_ptr = 7;
+	*timer_status_ptr = 0;
+}
+
 static void btns_handler(void * context){
 	volatile int * edge_capture_ptr = (volatile int*) context;
 	*edge_capture_ptr = *(volatile int *)(BTNS_BASE + 12);
 	*btn_mask_ptr = 0xf;
 	*btn_edge_ptr = *edge_capture_ptr;
 	switch(*btns){
-	case 8:       // set time
+	case 7:       // set time
 		if(btns_prev != *btns)
 			if (state != 1){
 				state = 1;
@@ -114,21 +115,21 @@ static void btns_handler(void * context){
 				now = new_time;
 			}
 		break;
-	case 4:      // set alarm
+	case 11:      // set alarm
 		if(btns_prev != *btns)
 		state = (state != 2) ? 2 : 0;
 		break;
-	case 2:      // up
+	case 13:      // up
 		if(btns_prev != *btns)
 		if (state == 1) new_time += 300;
 		else if (state == 2) alarm += 300;
 		break;
-	case 1:     // down
+	case 14:     // down
 		if(btns_prev != *btns)
 		if (state == 1) if(new_time != 0) new_time -= 300;
 		else if (state == 2) if(alarm != 0) alarm -= 300;
 		break;
-	case 0: break;
+	case 15: break;
 	default:
 		state = 0;
 		break;
@@ -145,19 +146,7 @@ static void init_btns(void)
 			BTNS_IRQ,
 			btns_handler,
 			edge_capture_ptr, 0);
-}
 
-static void init_timer (){
-	void * edge_capture_ptr = (void*) &edge_capture_time;
-	*timer_mask_ptr = 1;
-	*timer_edge_cap_ptr = 0xF;
-	alt_ic_isr_register (TIMER_0_IRQ_INTERRUPT_CONTROLLER_ID,
-			TIMER_0_IRQ,
-			timer_handler,
-			edge_capture_ptr,
-			0);
-	*timer_control_ptr = 7;
-	*timer_status_ptr = 0;
 }
 
 int main()

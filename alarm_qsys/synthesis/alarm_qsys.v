@@ -110,7 +110,7 @@ module alarm_qsys (
 		.writedata  (mm_interconnect_0_btns_s1_writedata),  //                    .writedata
 		.chipselect (mm_interconnect_0_btns_s1_chipselect), //                    .chipselect
 		.readdata   (mm_interconnect_0_btns_s1_readdata),   //                    .readdata
-		.in_port    (key_export),                           // external_connection.export
+		.in_port    (~key_export),                           // external_connection.export
 		.irq        (irq_mapper_receiver1_irq)              //                 irq.irq
 	);
 
