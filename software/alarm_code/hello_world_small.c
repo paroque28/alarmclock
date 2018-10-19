@@ -78,30 +78,41 @@
  *
  */
 
+#include <time.h>
 #include "sys/alt_stdio.h"
 #include "system.h"
 #include "altera_avalon_timer_regs.h"
+#include "sys/alt_irq.h"
+#include "altera_avalon_pio_regs.h"
 
-/*
-#define BTNS_BASE 0x870
-#define LEDS_BASE 0x880
-#define ONCHIP_MEMORY2_0_BASE 0x1000
-#define SEVEN_SEG_0_BASE 0x810
-#define SEVEN_SEG_1_BASE 0x820
-#define SEVEN_SEG_2_BASE 0x830
-#define SEVEN_SEG_3_BASE 0x840
-#define SEVEN_SEG_4_BASE 0x850
-#define SEVEN_SEG_5_BASE 0x860
-#define TIMER_0_BASE 0x8a0
-*/
+volatile int edge_capture;
+volatile int edge_capture_time;
 
-char *timer_status = (char *) TIMER_0_BASE;
-char *timer_control = (char *) TIMER_0_BASE + 1;
+volatile char *timer_status_ptr = (char *)( TIMER_0_BASE);
+volatile char *timer_control_ptr = (char *)(TIMER_0_BASE + 4);
+volatile char *timer_mask_ptr = (char *)(TIMER_0_BASE + 8);
+volatile char *timer_edge_cap_ptr = (char *)(TIMER_0_BASE + 12);
+
+
+volatile char *btn_mask_ptr = (volatile char *)(BTNS_BASE + 8);
+volatile char *btn_edge_ptr = (volatile char *)(BTNS_BASE + 12);
 
 volatile char *hex0 = (char *)SEVEN_SEG_0_BASE;
 volatile char *hex1 = (char *)SEVEN_SEG_1_BASE;
+volatile char *hex2 = (char *)SEVEN_SEG_2_BASE;
+volatile char *hex3 = (char *)SEVEN_SEG_3_BASE;
+volatile char *hex4 = (char *)SEVEN_SEG_4_BASE;
+volatile char *hex5 = (char *)SEVEN_SEG_5_BASE;
 
-int num0 = 0;
+volatile char *btns = (char *)BTNS_BASE;
+char btns_prev = 15;
+
+struct tm ts;
+time_t now = 0;
+time_t alarm = 0;
+time_t new_time;
+
+int state ; // Estado 0: normal, Estado 1: Set hora, Estado 2: Set Alarma, Estado diferente: Indefinido
 
 char num_to_seven_seg(int num) {
 	unsigned int result = 0;
@@ -120,21 +131,107 @@ char num_to_seven_seg(int num) {
 	return ~result;
 }
 
-void timer_isr(void * context){
-	*timer_status = 0x0;
-	if (num0 == 9){
-		num0 = -1;
+void show_time (volatile char * dec, volatile char * unit, int n){
+	*dec = num_to_seven_seg(n / 10);
+	*unit = num_to_seven_seg(n % 10);
+}
+
+
+static void timer_handler(void * context){
+	/*
+	 *
+	 */
+	*timer_status_ptr = 0;
+	now++;
+
+	if (state == 0){
+		ts = *localtime(&now);
 	}
-	*hex0 = num_to_seven_seg(++num0);
+	else if (state == 1){
+		ts = *localtime(&new_time);
+		new_time++;
+	}
+	else if (state == 2){
+		ts = *localtime(&alarm);
+	}
+
+	show_time(hex1, hex0, ts.tm_sec);
+	show_time(hex3, hex2, ts.tm_min);
+	show_time(hex5, hex4, ts.tm_hour);
+
+
+}
+
+static void init_timer (){
+	void * edge_capture_ptr = (void*) &edge_capture_time;
+	*timer_mask_ptr = 1;
+	*timer_edge_cap_ptr = 0xF;
+	alt_ic_isr_register (TIMER_0_IRQ_INTERRUPT_CONTROLLER_ID,
+			TIMER_0_IRQ,
+			timer_handler,
+			edge_capture_ptr,
+			0);
+	*timer_control_ptr = 7;
+	*timer_status_ptr = 0;
+}
+
+static void btns_handler(void * context){
+	volatile int * edge_capture_ptr = (volatile int*) context;
+	*edge_capture_ptr = *(volatile int *)(BTNS_BASE + 12);
+	*btn_mask_ptr = 0xf;
+	*btn_edge_ptr = *edge_capture_ptr;
+	switch(*btns){
+	case 7:       // set time
+		if(btns_prev != *btns)
+			if (state != 1){
+				state = 1;
+				new_time = now;
+			}
+			else {
+				state = 0;
+				now = new_time;
+			}
+		break;
+	case 11:      // set alarm
+		if(btns_prev != *btns)
+		state = (state != 2) ? 2 : 0;
+		break;
+	case 13:      // up
+		if(btns_prev != *btns)
+		if (state == 1) new_time += 300;
+		else if (state == 2) alarm += 300;
+		break;
+	case 14:     // down
+		if(btns_prev != *btns)
+		if (state == 1) if(new_time != 0) new_time -= 300;
+		else if (state == 2) if(alarm != 0) alarm -= 300;
+		break;
+	case 15: break;
+	default:
+		state = 0;
+		break;
+	}
+	btns_prev = *btns;
+}
+
+static void init_btns(void)
+{
+	void * edge_capture_ptr = (void*) &edge_capture;
+	*btn_mask_ptr = 0xF;
+	*btn_edge_ptr = 0xF;
+	alt_ic_isr_register( BTNS_IRQ_INTERRUPT_CONTROLLER_ID,
+			BTNS_IRQ,
+			btns_handler,
+			edge_capture_ptr, 0);
+
 }
 
 int main()
 { 
-  alt_putstr("Hello from Nios II!\n");
+    init_timer();
+    init_btns();
 
-  *timer_control = 0x07;
-  *timer_status = 0x0;
-  alt_ic_isr_register (TIMER_0_IRQ_INTERRUPT_CONTROLLER_ID, TIMER_0_IRQ, timer_isr, 0,0);
+
 
   /* Event loop never exits. */
   while (1);

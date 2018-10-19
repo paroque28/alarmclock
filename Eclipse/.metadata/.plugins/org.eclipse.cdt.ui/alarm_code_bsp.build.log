@@ -1,6 +1,6 @@
-17:49:10 **** Clean-only build of configuration Nios II for project alarm_code_bsp ****
-make clean 
-[BSP clean complete]
+00:14:12 **** Incremental Build of configuration Nios II for project alarm_code_bsp ****
+make all 
+[BSP build complete]
 
-17:49:10 Build Finished (took 578ms)
+00:14:13 Build Finished (took 440ms)
 

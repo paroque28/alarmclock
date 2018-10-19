@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Oct 17, 2018 5:49:08 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1539820148121</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Oct 18, 2018 11:23:52 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1539926632744</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/oscarjosueulatealpizar/Proyect-2/software/alarm_code_bsp</BspGeneratedLocation>
         <BspSettingsFile>./settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../alarm_qsys.sopcinfo</SopcDesignFile>
@@ -960,8 +960,8 @@
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>onchip_memory2_0</slaveDescriptor>
-                <addressRange>0x00001000 - 0x00001FFF</addressRange>
-                <addressSpan>4096</addressSpan>
+                <addressRange>0x00004000 - 0x00006FFF</addressRange>
+                <addressSpan>12288</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <LinkerSection>

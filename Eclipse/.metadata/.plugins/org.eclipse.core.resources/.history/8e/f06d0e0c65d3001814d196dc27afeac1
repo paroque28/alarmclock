@@ -1,0 +1,225 @@
+/* 
+ * "Small Hello World" example. 
+ * 
+ * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
+ * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example 
+ * designs. It requires a STDOUT  device in your system's hardware. 
+ *
+ * The purpose of this example is to demonstrate the smallest possible Hello 
+ * World application, using the Nios II HAL library.  The memory footprint
+ * of this hosted application is ~332 bytes by default using the standard 
+ * reference design.  For a more fully featured Hello World application
+ * example, see the example titled "Hello World".
+ *
+ * The memory footprint of this example has been reduced by making the
+ * following changes to the normal "Hello World" example.
+ * Check in the Nios II Software Developers Manual for a more complete 
+ * description.
+ * 
+ * In the SW Application project (small_hello_world):
+ *
+ *  - In the C/C++ Build page
+ * 
+ *    - Set the Optimization Level to -Os
+ * 
+ * In System Library project (small_hello_world_syslib):
+ *  - In the C/C++ Build page
+ * 
+ *    - Set the Optimization Level to -Os
+ * 
+ *    - Define the preprocessor option ALT_NO_INSTRUCTION_EMULATION 
+ *      This removes software exception handling, which means that you cannot 
+ *      run code compiled for Nios II cpu with a hardware multiplier on a core 
+ *      without a the multiply unit. Check the Nios II Software Developers 
+ *      Manual for more details.
+ *
+ *  - In the System Library page:
+ *    - Set Periodic system timer and Timestamp timer to none
+ *      This prevents the automatic inclusion of the timer driver.
+ *
+ *    - Set Max file descriptors to 4
+ *      This reduces the size of the file handle pool.
+ *
+ *    - Check Main function does not exit
+ *    - Uncheck Clean exit (flush buffers)
+ *      This removes the unneeded call to exit when main returns, since it
+ *      won't.
+ *
+ *    - Check Don't use C++
+ *      This builds without the C++ support code.
+ *
+ *    - Check Small C library
+ *      This uses a reduced functionality C library, which lacks  
+ *      support for buffering, file IO, floating point and getch(), etc. 
+ *      Check the Nios II Software Developers Manual for a complete list.
+ *
+ *    - Check Reduced device drivers
+ *      This uses reduced functionality drivers if they're available. For the
+ *      standard design this means you get polled UART and JTAG UART drivers,
+ *      no support for the LCD driver and you lose the ability to program 
+ *      CFI compliant flash devices.
+ *
+ *    - Check Access device drivers directly
+ *      This bypasses the device file system to access device drivers directly.
+ *      This eliminates the space required for the device file system services.
+ *      It also provides a HAL version of libc services that access the drivers
+ *      directly, further reducing space. Only a limited number of libc
+ *      functions are available in this configuration.
+ *
+ *    - Use ALT versions of stdio routines:
+ *
+ *           Function                  Description
+ *        ===============  =====================================
+ *        alt_printf       Only supports %s, %x, and %c ( < 1 Kbyte)
+ *        alt_putstr       Smaller overhead than puts with direct drivers
+ *                         Note this function doesn't add a newline.
+ *        alt_putchar      Smaller overhead than putchar with direct drivers
+ *        alt_getchar      Smaller overhead than getchar with direct drivers
+ *
+ */
+
+#include <time.h>
+#include "sys/alt_stdio.h"
+#include "system.h"
+#include "altera_avalon_timer_regs.h"
+#include "sys/alt_irq.h"
+#include "altera_avalon_pio_regs.h"
+
+volatile int edge_capture;
+volatile int edge_capture_time;
+
+volatile char *timer_status_ptr = (char *)( TIMER_0_BASE);
+volatile char *timer_control_ptr = (char *)(TIMER_0_BASE + 4);
+volatile char *timer_mask_ptr = (char *)(TIMER_0_BASE + 8);
+volatile char *timer_edge_cap_ptr = (char *)(TIMER_0_BASE + 12);
+
+
+volatile char *btn_mask_ptr = (volatile char *)(BTNS_BASE + 8);
+volatile char *btn_edge_ptr = (volatile char *)(BTNS_BASE + 12);
+
+volatile char *hex0 = (char *)SEVEN_SEG_0_BASE;
+volatile char *hex1 = (char *)SEVEN_SEG_1_BASE;
+volatile char *hex2 = (char *)SEVEN_SEG_2_BASE;
+volatile char *hex3 = (char *)SEVEN_SEG_3_BASE;
+volatile char *hex4 = (char *)SEVEN_SEG_4_BASE;
+volatile char *hex5 = (char *)SEVEN_SEG_5_BASE;
+
+volatile char *btns = (char *)BTNS_BASE;
+
+struct tm ts;
+time_t now = 0;
+time_t alarm = 121;
+time_t new_time;
+
+int state ; // Estado 0: normal, Estado 1: Set hora, Estado 2: Set Alarma, Estado diferente: Indefinido
+
+char num_to_seven_seg(int num) {
+	unsigned int result = 0;
+
+	if (num == 0) { result = 0x7F - 0x40; }
+	else if (num == 1) { result = 0x7F - 0x79; }
+	else if (num == 2) { result = 0x7F - 0x24; }
+	else if (num == 3) { result = 0x7F - 0x30; }
+	else if (num == 4) { result = 0x7F - 0x19; }
+	else if (num == 5) { result = 0x7F - 0x12; }
+	else if (num == 6) { result = 0x7F - 0x02; }
+	else if (num == 7) { result = 0x7F - 0x78; }
+	else if (num == 8) { result = 0x7F - 0x00; }
+	else if (num == 9) { result = 0x7F - 0x10; }
+
+	return ~result;
+}
+
+void show_time (volatile char * dec, volatile char * unit, int n){
+	*dec = num_to_seven_seg(n / 10);
+	*unit = num_to_seven_seg(n % 10);
+}
+
+
+static void timer_handler(void * context){
+	/*
+	 *
+	 */
+	*timer_status_ptr = 0;
+	now++;
+	ts = *localtime(&now);
+
+	if (state == 0){
+		show_time(hex1, hex0, ts.tm_sec);
+		show_time(hex3, hex2, ts.tm_min);
+		show_time(hex5, hex4, ts.tm_hour);
+	}
+	else if (state == 1){
+		ts = *localtime(&new_time);
+	}
+	else if (state == 2){
+		ts = *localtime(&alarm);
+	}
+
+
+}
+
+static void init_timer (){
+	void * edge_capture_ptr = (void*) &edge_capture_time;
+	*timer_mask_ptr = 1;
+	*timer_edge_cap_ptr = 0xF;
+	alt_ic_isr_register (TIMER_0_IRQ_INTERRUPT_CONTROLLER_ID,
+			TIMER_0_IRQ,
+			timer_handler,
+			edge_capture_ptr,
+			0);
+	*timer_control_ptr = 7;
+	*timer_status_ptr = 0;
+}
+
+static void btns_handler(void * context){
+	volatile int * edge_capture_ptr = (volatile int*) context;
+	*edge_capture_ptr = *(volatile int *)(BTNS_BASE + 12);
+	*btn_mask_ptr = 0xf;
+	*btn_edge_ptr = *edge_capture_ptr;
+	printf("%d\n", *edge_capture_ptr);
+}
+
+static void init_btns(void)
+{
+	void * edge_capture_ptr = (void*) &edge_capture;
+	*btn_mask_ptr = 0xF;
+	*btn_edge_ptr = 0xF;
+	alt_ic_isr_register( BTNS_IRQ_INTERRUPT_CONTROLLER_ID,
+			BTNS_IRQ,
+			btns_handler,
+			edge_capture_ptr, 0);
+
+}
+
+int main()
+{ 
+    alt_putstr("Hello Pablo\n");
+    init_timer();
+    init_btns();
+
+
+
+  /* Event loop never exits. */
+  while (1);
+
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

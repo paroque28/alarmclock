@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'alarm_qsys'
  * SOPC Builder design path: ../../alarm_qsys.sopcinfo
  *
- * Generated: Wed Oct 17 17:49:08 CST 2018
+ * Generated: Thu Oct 18 23:23:53 CST 2018
  */
 
 /*

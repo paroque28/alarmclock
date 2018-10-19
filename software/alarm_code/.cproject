@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
-		<buildSystem id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1753690204">
-			<storageModule id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1753690204" moduleId="org.eclipse.cdt.core.settings"/>
+		<buildSystem id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1222206988">
+			<storageModule id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1222206988" moduleId="org.eclipse.cdt.core.settings"/>
 		</buildSystem>
-		<cconfiguration id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1753690204">
+		<cconfiguration id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1222206988">
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration buildProperties="" description="" id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1753690204" name="Nios II" parent="org.eclipse.cdt.build.core.prefbase.cfg">
-					<folderInfo id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1753690204." name="/" resourcePath="">
-						<toolChain id="altera.nios2.linux.gcc4.268476569" name="Linux Nios II GCC4" superClass="altera.nios2.linux.gcc4">
-							<targetPlatform id="altera.nios2.linux.gcc4.1878289138" name="Nios II" osList="linux" superClass="altera.nios2.linux.gcc4"/>
-							<builder buildPath="${workspace_loc://alarm_code}" id="altera.tool.gnu.builder.1857032901" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="altera.tool.gnu.builder"/>
-							<tool id="altera.tool.gnu.c.compiler.918471323" name="Nios II GCC C Compiler" superClass="altera.tool.gnu.c.compiler">
-								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.714175491" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+				<configuration buildProperties="" description="" id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1222206988" name="Nios II" parent="org.eclipse.cdt.build.core.prefbase.cfg">
+					<folderInfo id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1222206988." name="/" resourcePath="">
+						<toolChain id="altera.nios2.linux.gcc4.766449565" name="Linux Nios II GCC4" superClass="altera.nios2.linux.gcc4">
+							<targetPlatform id="altera.nios2.linux.gcc4.1319664321" name="Nios II" osList="linux" superClass="altera.nios2.linux.gcc4"/>
+							<builder buildPath="${workspace_loc://alarm_code}" id="altera.tool.gnu.builder.68933548" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="altera.tool.gnu.builder"/>
+							<tool id="altera.tool.gnu.c.compiler.1086393558" name="Nios II GCC C Compiler" superClass="altera.tool.gnu.c.compiler">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.606794543" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
-							<tool id="altera.tool.gnu.cpp.compiler.934450080" name="Nios II GCC C++ Compiler" superClass="altera.tool.gnu.cpp.compiler">
-								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.964176729" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							<tool id="altera.tool.gnu.cpp.compiler.1302897799" name="Nios II GCC C++ Compiler" superClass="altera.tool.gnu.cpp.compiler">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.199804969" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
-							<tool id="altera.tool.gnu.archiver.1351295547" name="Nios II GCC Archiver" superClass="altera.tool.gnu.archiver"/>
-							<tool id="altera.tool.gnu.c.linker.567125784" name="Nios II GCC C Linker" superClass="altera.tool.gnu.c.linker"/>
-							<tool id="altera.tool.gnu.cpp.linker.1758551758" name="Nios II GCC C++ Linker" superClass="altera.tool.gnu.cpp.linker">
-								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1209315253" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+							<tool id="altera.tool.gnu.archiver.2015883570" name="Nios II GCC Archiver" superClass="altera.tool.gnu.archiver"/>
+							<tool id="altera.tool.gnu.c.linker.74356938" name="Nios II GCC C Linker" superClass="altera.tool.gnu.c.linker"/>
+							<tool id="altera.tool.gnu.cpp.linker.167587211" name="Nios II GCC C++ Linker" superClass="altera.tool.gnu.cpp.linker">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1856622969" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
-							<tool id="altera.tool.gnu.assembler.1020364854" name="Nios II GCC Assembler" superClass="altera.tool.gnu.assembler">
-								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.681227504" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							<tool id="altera.tool.gnu.assembler.1592024178" name="Nios II GCC Assembler" superClass="altera.tool.gnu.assembler">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.2068577562" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
 				</configuration>
 			</storageModule>
-			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1753690204" moduleId="org.eclipse.cdt.core.settings" name="Nios II">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1222206988" moduleId="org.eclipse.cdt.core.settings" name="Nios II">
 				<externalSettings/>
 				<extensions>
 					<extension id="org.eclipse.cdt.core.GNU_ELF" point="org.eclipse.cdt.core.BinaryParser"/>
@@ -47,15 +47,15 @@
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="alarm_code.null.1991674738" name="alarm_code"/>
+		<project id="alarm_code.null.2066030130" name="alarm_code"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1753690204;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1753690204.;altera.tool.gnu.cpp.compiler.934450080;cdt.managedbuild.tool.gnu.cpp.compiler.input.964176729">
+		<scannerConfigBuildInfo instanceId="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1222206988;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1222206988.;altera.tool.gnu.cpp.compiler.1302897799;cdt.managedbuild.tool.gnu.cpp.compiler.input.199804969">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1753690204;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1753690204.;altera.tool.gnu.c.compiler.918471323;cdt.managedbuild.tool.gnu.c.compiler.input.714175491">
+		<scannerConfigBuildInfo instanceId="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1222206988;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1222206988.;altera.tool.gnu.c.compiler.1086393558;cdt.managedbuild.tool.gnu.c.compiler.input.606794543">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
