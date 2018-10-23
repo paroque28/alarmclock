@@ -96,23 +96,12 @@ static void timer_handler(void * context){
 		show_time(hex5, hex4, ts.tm_hour);
 	}
 	else {
-		show_time(hex1, hex0, ts.tm_sec);
-		switch (pos){
-		case 0:
-			*hex2 = 0xFF;
-			break;
-		case 1:
-			*hex3 = 0xFF;
-			break;
-		case 2:
-			*hex4 = 0xFF;
-			break;
-		case 3:
-			*hex5 = 0xFF;
-			break;
-		default:
-			break;
-		}
+		*hex0 = 0xFF;
+		*hex1 = 0xFF;
+		*hex2 = 0xFF;
+		*hex3 = 0xFF;
+		*hex4 = 0xFF;
+		*hex5 = 0xFF;
 	}
 
 
@@ -145,14 +134,14 @@ static void btns_handler(void * context){
 		break;
 	case 2:      // up
 		if(btns_prev != *btns){
-			if (state == 1) new_time += calc_time();
-			else if (state == 2) alarm += calc_time();
+			if (state == 1) new_time += 60;
+			else if (state == 2) alarm += 60;
 		}
 		break;
 	case 1:     // down
 		if(btns_prev != *btns)
-		if (state == 1) {if(new_time != 0) (new_time -= calc_time());}
-		else if (state == 2) {if(alarm != 0) (alarm -= calc_time());}
+		if (state == 1) {if(new_time != 0) (new_time -= 60);}
+		else if (state == 2) {if(alarm != 0) (alarm -= 60);}
 		break;
 	case 0: break;
 	default:
@@ -160,25 +149,6 @@ static void btns_handler(void * context){
 		break;
 	}
 	btns_prev = *btns;
-}
-
-int calc_time(){
-	switch (pos){
-		case 0:
-			 return 60;
-			break;
-		case 1:
-			return 600;
-			break;
-		case 2:
-			return 3600;
-			break;
-		case 3:
-			return 36000;
-			break;
-		default:
-			break;
-		}
 }
 
 static void init_btns(void)

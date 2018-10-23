@@ -13,7 +13,7 @@ volatile char *timer_control_ptr = (char *)(TIMER_0_BASE + 4);
 volatile char *timer_mask_ptr = (char *)(TIMER_0_BASE + 8);
 volatile char *timer_edge_cap_ptr = (char *)(TIMER_0_BASE + 12);
 
-volatile char *btn_direction_ptr = (volatile char *)(BTNS_BASE + 4);
+
 volatile char *btn_mask_ptr = (volatile char *)(BTNS_BASE + 8);
 volatile char *btn_edge_ptr = (volatile char *)(BTNS_BASE + 12);
 
@@ -28,7 +28,6 @@ volatile char *leds = (char *)LEDS_BASE;
 
 volatile char *btns = (char *)BTNS_BASE;
 char btns_prev = 15;
-short pos  = 0;
 
 struct tm ts;
 struct tm alarm_ts;
@@ -36,7 +35,7 @@ time_t now = 0;
 time_t alarm = 0;
 time_t new_time;
 
-short state ; // Estado 0: normal, Estado 1: Set hora, Estado 2: Set Alarma, Estado diferente: Indefinido
+int state ; // Estado 0: normal, Estado 1: Set hora, Estado 2: Set Alarma, Estado diferente: Indefinido
 
 char num_to_seven_seg(int num) {
 	unsigned int result = 0;
@@ -64,7 +63,7 @@ void show_time (volatile char * dec, volatile char * unit, int n){
 static void timer_handler(void * context){
 	*timer_status_ptr = 0;
 	now++;
-	// alarm sound
+
 	if (state == 0){
 		ts = *localtime(&now);
 		alarm_ts = *localtime(&alarm);
@@ -80,40 +79,17 @@ static void timer_handler(void * context){
 			*leds = 0;
 		}
 	}
-	//set new time
 	else if (state == 1){
 		ts = *localtime(&new_time);
 		new_time++;
 	}
-	// set alarm
 	else if (state == 2){
 		ts = *localtime(&alarm);
 	}
-	alarm_ts = *localtime(&now);
-	if(state == 0 || (state ==1  && ts.tm_sec % 2 == 0) || (state == 2 && alarm_ts.tm_sec % 2 == 0)){
-		show_time(hex1, hex0, ts.tm_sec);
-		show_time(hex3, hex2, ts.tm_min);
-		show_time(hex5, hex4, ts.tm_hour);
-	}
-	else {
-		show_time(hex1, hex0, ts.tm_sec);
-		switch (pos){
-		case 0:
-			*hex2 = 0xFF;
-			break;
-		case 1:
-			*hex3 = 0xFF;
-			break;
-		case 2:
-			*hex4 = 0xFF;
-			break;
-		case 3:
-			*hex5 = 0xFF;
-			break;
-		default:
-			break;
-		}
-	}
+
+	show_time(hex1, hex0, ts.tm_sec);
+	show_time(hex3, hex2, ts.tm_min);
+	show_time(hex5, hex4, ts.tm_hour);
 
 
 }
@@ -126,33 +102,28 @@ static void btns_handler(void * context){
 	switch(*btns){
 	case 8:       // set time
 		if(btns_prev != *btns)
-			if (state == 0){    // estado show time
+			if (state != 1){
 				state = 1;
 				new_time = now;
 			}
-			else if (state == 1){    // estado set time
-				state = 2;
+			else {
+				state = 0;
 				now = new_time;
 			}
-			else if (state == 2){   // estado alarm
-				state = 0;
-			}
-			else state = 0;
 		break;
-	case 4:      // move to right
-		if(btns_prev != *btns) pos += 1;
-		if (pos > 3) pos = 0;
+	case 4:      // set alarm
+		if(btns_prev != *btns)
+		state = (state != 2) ? 2 : 0;
 		break;
 	case 2:      // up
-		if(btns_prev != *btns){
-			if (state == 1) new_time += calc_time();
-			else if (state == 2) alarm += calc_time();
-		}
+		if(btns_prev != *btns)
+		if (state == 1) new_time += 120;
+		else if (state == 2) alarm += 120;
 		break;
 	case 1:     // down
 		if(btns_prev != *btns)
-		if (state == 1) {if(new_time != 0) (new_time -= calc_time());}
-		else if (state == 2) {if(alarm != 0) (alarm -= calc_time());}
+		if (state == 1) if(new_time != 0) new_time -= 120;
+		else if (state == 2) if(alarm != 0) alarm -= 120;
 		break;
 	case 0: break;
 	default:
@@ -162,31 +133,11 @@ static void btns_handler(void * context){
 	btns_prev = *btns;
 }
 
-int calc_time(){
-	switch (pos){
-		case 0:
-			 return 60;
-			break;
-		case 1:
-			return 600;
-			break;
-		case 2:
-			return 3600;
-			break;
-		case 3:
-			return 36000;
-			break;
-		default:
-			break;
-		}
-}
-
 static void init_btns(void)
 {
 	void * edge_capture_ptr = (void*) &edge_capture;
 	*btn_mask_ptr = 0xF;
 	*btn_edge_ptr = 0xF;
-	*btn_direction_ptr = 0;
 	alt_ic_isr_register( BTNS_IRQ_INTERRUPT_CONTROLLER_ID,
 			BTNS_IRQ,
 			btns_handler,
