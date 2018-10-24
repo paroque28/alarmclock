@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Oct 18, 2018 11:23:52 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1539926632744</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Oct 24, 2018 5:37:45 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1540424265013</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/oscarjosueulatealpizar/Proyect-2/software/alarm_code_bsp</BspGeneratedLocation>
-        <BspSettingsFile>./settings.bsp</BspSettingsFile>
+        <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../alarm_qsys.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>nios2_gen2_0</Cpu>
@@ -960,8 +960,8 @@
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>onchip_memory2_0</slaveDescriptor>
-                <addressRange>0x00004000 - 0x00006FFF</addressRange>
-                <addressSpan>12288</addressSpan>
+                <addressRange>0x00004000 - 0x00005FFF</addressRange>
+                <addressSpan>8192</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <LinkerSection>

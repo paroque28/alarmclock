@@ -71,7 +71,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  26 .jdi          00004ea6  00000000  00000000  00011054  2**0
                   CONTENTS, READONLY
- 27 .sopcinfo     00063184  00000000  00000000  00015efa  2**0
+ 27 .sopcinfo     0006317e  00000000  00000000  00015efa  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 00004000 l    d  .entry	00000000 .entry
@@ -179,7 +179,7 @@ SYMBOL TABLE:
 0000591c g     O .rwdata	00000001 btns_prev
 0000415c g     F .exceptions	00000024 alt_instruction_exception_entry
 00005938 g     O .rwdata	00000004 hex1
-00007000 g       *ABS*	00000000 __alt_stack_pointer
+00006000 g       *ABS*	00000000 __alt_stack_pointer
 00004cf4 g     F .text	000000e4 _free_r
 00004180 g     F .text	0000003c _start
 00005710 g     F .text	00000004 alt_sys_init
@@ -200,7 +200,7 @@ SYMBOL TABLE:
 0000491c g     F .text	00000050 localtime
 000046dc g     F .text	0000008c main
 00005b28 g     O .bss	00000004 alt_envp
-00007000 g       *ABS*	00000000 __alt_heap_limit
+00006000 g       *ABS*	00000000 __alt_heap_limit
 00004dd8 g     F .text	00000158 _malloc_r
 00004768 g     F .text	00000084 .hidden __divsi3
 00005798 g       *ABS*	00000000 __flash_rodata_start
@@ -219,7 +219,7 @@ SYMBOL TABLE:
 00004180 g       *ABS*	00000000 __ram_exceptions_end
 000054e0 g     F .text	00000038 alt_ic_irq_disable
 000047ec g     F .text	00000074 .hidden __modsi3
-00007000 g       *ABS*	00000000 __alt_data_end
+00006000 g       *ABS*	00000000 __alt_data_end
 00004020 g     F .exceptions	00000000 alt_exception
 0000400c g       .entry	00000000 _exit
 00005940 g     O .rwdata	00000004 btn_edge_ptr
@@ -573,7 +573,7 @@ Disassembly of section .text:
     movhi sp, %hi(__alt_stack_pointer)
     4180:	06c00034 	movhi	sp,0
     ori sp, sp, %lo(__alt_stack_pointer)
-    4184:	dedc0014 	ori	sp,sp,28672
+    4184:	ded80014 	ori	sp,sp,24576
     movhi gp, %hi(_gp)
     4188:	06800034 	movhi	gp,0
     ori gp, gp, %lo(_gp)
@@ -901,10 +901,10 @@ static void timer_handler(void * context){
     443c:	d1600417 	ldw	r5,-32752(gp)
     4440:	d1200317 	ldw	r4,-32756(gp)
 			break;
+		default:
+			break;
 		}
 	}
-
-
 }
     4444:	dfc00117 	ldw	ra,4(sp)
     4448:	dc000017 	ldw	r16,0(sp)
@@ -970,10 +970,10 @@ static void timer_handler(void * context){
 			*hex5 = 0xFF;
     44ac:	10c00005 	stb	r3,0(r2)
 			break;
+		default:
+			break;
 		}
 	}
-
-
 }
     44b0:	dfc00117 	ldw	ra,4(sp)
     44b4:	dc000017 	ldw	r16,0(sp)
@@ -1044,7 +1044,7 @@ int calc_time(){
     4508:	f800283a 	ret
 
 0000450c <btns_handler>:
-
+	}
 }
 
 static void btns_handler(void * context){
@@ -1052,9 +1052,9 @@ static void btns_handler(void * context){
 	*edge_capture_ptr = *(volatile int *)(BTNS_BASE + 12);
     450c:	00821f04 	movi	r2,2172
     4510:	10800017 	ldw	r2,0(r2)
+			break;
+		}
 	}
-
-
 }
 
 static void btns_handler(void * context){
@@ -1065,9 +1065,9 @@ static void btns_handler(void * context){
     451c:	20800015 	stw	r2,0(r4)
 	*btn_mask_ptr = 0xf;
     4520:	d0a00a17 	ldw	r2,-32728(gp)
+			break;
+		}
 	}
-
-
 }
 
 static void btns_handler(void * context){
@@ -2617,7 +2617,7 @@ static ALT_INLINE alt_irq_context ALT_ALWAYS_INLINE
 #else
   if ((heap_end + incr) > __alt_heap_limit) {
     56cc:	1109883a 	add	r4,r2,r4
-    56d0:	18dc0004 	addi	r3,r3,28672
+    56d0:	18d80004 	addi	r3,r3,24576
     56d4:	1900032e 	bgeu	r3,r4,56e4 <sbrk+0x40>
   status &= ~NIOS2_STATUS_PIE_MSK;
   status |= (context & NIOS2_STATUS_PIE_MSK);

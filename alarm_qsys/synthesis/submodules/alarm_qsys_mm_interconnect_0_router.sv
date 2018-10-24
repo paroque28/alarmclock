@@ -145,13 +145,13 @@ module alarm_qsys_mm_interconnect_0_router
     localparam PAD8 = log2ceil(64'h890 - 64'h880); 
     localparam PAD9 = log2ceil(64'h898 - 64'h890); 
     localparam PAD10 = log2ceil(64'h8c0 - 64'h8a0); 
-    localparam PAD11 = log2ceil(64'h8000 - 64'h4000); 
+    localparam PAD11 = log2ceil(64'h6000 - 64'h4000); 
     // -------------------------------------------------------
     // Work out which address bits are significant based on the
     // address range of the slaves. If the required width is too
     // large or too small, we use the address field width instead.
     // -------------------------------------------------------
-    localparam ADDR_RANGE = 64'h8000;
+    localparam ADDR_RANGE = 64'h6000;
     localparam RANGE_ADDR_WIDTH = log2ceil(ADDR_RANGE);
     localparam OPTIMIZED_ADDR_H = (RANGE_ADDR_WIDTH > PKT_ADDR_W) ||
                                   (RANGE_ADDR_WIDTH == 0) ?
@@ -265,7 +265,7 @@ module alarm_qsys_mm_interconnect_0_router
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 11;
     end
 
-    // ( 0x4000 .. 0x8000 )
+    // ( 0x4000 .. 0x6000 )
     if ( {address[RG:PAD11],{PAD11{1'b0}}} == 15'h4000   ) begin
             src_channel = 12'b000000000100;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 4;

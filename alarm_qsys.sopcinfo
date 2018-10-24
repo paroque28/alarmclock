@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="alarm_qsys" kind="alarm_qsys" version="1.0" fabric="QSYS">
  <!-- Format version 18.1 625 (Future versions may contain additional information.) -->
- <!-- 2018.10.18.23:14:38 -->
+ <!-- 2018.10.24.17:26:06 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1539926078</value>
+  <value>1540423565</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -4448,7 +4448,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="instSlaveMapParam">
    <type>java.lang.String</type>
-   <value><![CDATA[<address-map><slave name='nios2_gen2_0.debug_mem_slave' start='0x0' end='0x800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='onchip_memory2_0.s1' start='0x4000' end='0x7000' type='altera_avalon_onchip_memory2.s1' /></address-map>]]></value>
+   <value><![CDATA[<address-map><slave name='nios2_gen2_0.debug_mem_slave' start='0x0' end='0x800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='onchip_memory2_0.s1' start='0x4000' end='0x6000' type='altera_avalon_onchip_memory2.s1' /></address-map>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -4468,7 +4468,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="dataSlaveMapParam">
    <type>java.lang.String</type>
-   <value><![CDATA[<address-map><slave name='nios2_gen2_0.debug_mem_slave' start='0x0' end='0x800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='seven_seg_0.s1' start='0x810' end='0x820' type='altera_avalon_pio.s1' /><slave name='seven_seg_1.s1' start='0x820' end='0x830' type='altera_avalon_pio.s1' /><slave name='seven_seg_2.s1' start='0x830' end='0x840' type='altera_avalon_pio.s1' /><slave name='seven_seg_3.s1' start='0x840' end='0x850' type='altera_avalon_pio.s1' /><slave name='seven_seg_4.s1' start='0x850' end='0x860' type='altera_avalon_pio.s1' /><slave name='seven_seg_5.s1' start='0x860' end='0x870' type='altera_avalon_pio.s1' /><slave name='btns.s1' start='0x870' end='0x880' type='altera_avalon_pio.s1' /><slave name='leds.s1' start='0x880' end='0x890' type='altera_avalon_pio.s1' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x890' end='0x898' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='timer_0.s1' start='0x8A0' end='0x8C0' type='altera_avalon_timer.s1' /><slave name='onchip_memory2_0.s1' start='0x4000' end='0x7000' type='altera_avalon_onchip_memory2.s1' /></address-map>]]></value>
+   <value><![CDATA[<address-map><slave name='nios2_gen2_0.debug_mem_slave' start='0x0' end='0x800' type='altera_nios2_gen2.debug_mem_slave' /><slave name='seven_seg_0.s1' start='0x810' end='0x820' type='altera_avalon_pio.s1' /><slave name='seven_seg_1.s1' start='0x820' end='0x830' type='altera_avalon_pio.s1' /><slave name='seven_seg_2.s1' start='0x830' end='0x840' type='altera_avalon_pio.s1' /><slave name='seven_seg_3.s1' start='0x840' end='0x850' type='altera_avalon_pio.s1' /><slave name='seven_seg_4.s1' start='0x850' end='0x860' type='altera_avalon_pio.s1' /><slave name='seven_seg_5.s1' start='0x860' end='0x870' type='altera_avalon_pio.s1' /><slave name='btns.s1' start='0x870' end='0x880' type='altera_avalon_pio.s1' /><slave name='leds.s1' start='0x880' end='0x890' type='altera_avalon_pio.s1' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x890' end='0x898' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='timer_0.s1' start='0x8A0' end='0x8C0' type='altera_avalon_timer.s1' /><slave name='onchip_memory2_0.s1' start='0x4000' end='0x6000' type='altera_avalon_onchip_memory2.s1' /></address-map>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -5156,7 +5156,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s1</slaveName>
     <name>onchip_memory2_0.s1</name>
     <baseAddress>16384</baseAddress>
-    <span>12288</span>
+    <span>8192</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
@@ -5531,7 +5531,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s1</slaveName>
     <name>onchip_memory2_0.s1</name>
     <baseAddress>16384</baseAddress>
-    <span>12288</span>
+    <span>8192</span>
    </memoryBlock>
   </interface>
   <interface name="irq" kind="interrupt_receiver" version="18.1">
@@ -6210,7 +6210,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.SIZE_VALUE</name>
-   <value>12288</value>
+   <value>8192</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.WRITABLE</name>
@@ -6342,7 +6342,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="memorySize">
    <type>long</type>
-   <value>12288</value>
+   <value>8192</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -6481,7 +6481,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_set_addr_width">
    <type>int</type>
-   <value>12</value>
+   <value>11</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -6489,7 +6489,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_set_addr_width2">
    <type>int</type>
-   <value>12</value>
+   <value>11</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -6626,7 +6626,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>java.math.BigInteger</type>
-    <value>12288</value>
+    <value>8192</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -6714,7 +6714,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="explicitAddressSpan">
     <type>java.math.BigInteger</type>
-    <value>12288</value>
+    <value>8192</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -6925,7 +6925,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>address</name>
     <direction>Input</direction>
-    <width>12</width>
+    <width>11</width>
     <role>address</role>
    </port>
    <port>

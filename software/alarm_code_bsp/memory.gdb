@@ -3,7 +3,7 @@
 # Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'alarm_qsys'
 # SOPC Builder design path: ../../alarm_qsys.sopcinfo
 #
-# Generated: Thu Oct 18 23:23:53 CST 2018
+# Generated: Wed Oct 24 17:37:46 CST 2018
 
 # DO NOT MODIFY THIS FILE
 #
@@ -47,4 +47,4 @@
 # by allowing GDB to cache memory contents on the host.
 
 # onchip_memory2_0
-memory 0x4000 0x7000 cache
+memory 0x4000 0x6000 cache

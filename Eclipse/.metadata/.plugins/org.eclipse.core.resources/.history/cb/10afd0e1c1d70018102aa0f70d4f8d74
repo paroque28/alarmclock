@@ -28,7 +28,7 @@ volatile char *leds = (char *)LEDS_BASE;
 
 volatile char *btns = (char *)BTNS_BASE;
 char btns_prev = 15;
-short pos = 0;
+short pos  = 0;
 
 struct tm ts;
 struct tm alarm_ts;
@@ -114,6 +114,8 @@ static void timer_handler(void * context){
 			break;
 		}
 	}
+
+
 }
 
 static void btns_handler(void * context){

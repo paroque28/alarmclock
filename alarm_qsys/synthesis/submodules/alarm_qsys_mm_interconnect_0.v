@@ -46,7 +46,7 @@ module alarm_qsys_mm_interconnect_0 (
 		output wire [3:0]  nios2_gen2_0_debug_mem_slave_byteenable,        //                                         .byteenable
 		input  wire        nios2_gen2_0_debug_mem_slave_waitrequest,       //                                         .waitrequest
 		output wire        nios2_gen2_0_debug_mem_slave_debugaccess,       //                                         .debugaccess
-		output wire [11:0] onchip_memory2_0_s1_address,                    //                      onchip_memory2_0_s1.address
+		output wire [10:0] onchip_memory2_0_s1_address,                    //                      onchip_memory2_0_s1.address
 		output wire        onchip_memory2_0_s1_write,                      //                                         .write
 		input  wire [31:0] onchip_memory2_0_s1_readdata,                   //                                         .readdata
 		output wire [31:0] onchip_memory2_0_s1_writedata,                  //                                         .writedata
@@ -1104,7 +1104,7 @@ module alarm_qsys_mm_interconnect_0 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (12),
+		.AV_ADDRESS_W                   (11),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),

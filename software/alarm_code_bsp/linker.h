@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'alarm_qsys'
  * SOPC Builder design path: ../../alarm_qsys.sopcinfo
  *
- * Generated: Thu Oct 18 23:23:53 CST 2018
+ * Generated: Wed Oct 24 17:37:46 CST 2018
  */
 
 /*
@@ -66,7 +66,7 @@
  */
 
 #define ONCHIP_MEMORY2_0_REGION_BASE 0x4020
-#define ONCHIP_MEMORY2_0_REGION_SPAN 12256
+#define ONCHIP_MEMORY2_0_REGION_SPAN 8160
 #define RESET_REGION_BASE 0x4000
 #define RESET_REGION_SPAN 32
 
